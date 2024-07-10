@@ -1,0 +1,36 @@
+<!-- <div class="example-container">
+  <mat-form-field>
+    <mat-label>Enter your password</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always">
+    <mat-label>Amount</mat-label>
+    <input matInput type="number" class="example-right-align" placeholder="0">
+    <span matTextPrefix>$&nbsp;</span>
+    <span matTextSuffix>.00</span>
+  </mat-form-field>
+</div> -->
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+  <label for="name">Nome Stanza: </label><br>
+  <input id="name" type="text" formControlName="name"><br>
+<br>
+  <label for="description">Descrizione: </label><br>
+  <input id="description" type="text" formControlName="description"><br>
+  <br>
+  <label for="price">Prezzo: </label><br>
+  <input id="price" type="number" formControlName="price"><br>
+<br>
+  <label for="roomType">Room Type: </label><br>
+  <input id="roomType" type="text" formControlName="roomType"><br>
+<br>
+<label for="quantity">Quantità: </label><br>
+<input id="quantity" type="number" formControlName="quantity"><br>
+<br>
+<p>Complete the form to enable button.</p>
+<button type="submit" [disabled]="!addForm.valid">Submit</button>
+
+</form>

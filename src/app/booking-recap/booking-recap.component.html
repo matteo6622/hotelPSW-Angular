@@ -1,0 +1,20 @@
+<div class="card flex justify-content-center">
+  <p-card [style]= styleCard styleClass="booking-recap" class="flex justify-content-center" 
+   header="Prenotazione andata a buon fine!">
+   <h2>DETTAGLI:</h2>
+   <div *ngIf="booking">
+    <div *ngIf="room">
+   <p >Nome ospite: {{booking.guestName}}</p>
+   <p>Email ospite: {{booking.guestEmail}}</p>
+   <p>Data di check-in: {{booking.checkIn}}</p>
+   <p>Data di check-out: {{booking.checkOut}}</p>
+   <p>Numero di notti: {{timeDifference}}</p>
+   <p>Numero di ospiti: {{booking.numberOfGuest}}</p>
+   <p>Prezzo a testa per notte: {{room.price}}</p>
+   <p>Prezzo totale: {{totalPrice}}</p>
+   <p>Codice prenotazione: {{confirmString}}</p>
+
+  </div>
+  </div>
+  </p-card>
+</div>

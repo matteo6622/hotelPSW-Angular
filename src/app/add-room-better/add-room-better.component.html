@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="firstText">
+    Aggiungi una stanza
+  </div>
+
+<form [formGroup]="addForm" (ngSubmit)= "onSubmit()">
+  <div class="input-data">
+<mat-form-field class="nameRoom">
+  <mat-label>Nome Stanza</mat-label>
+  <input formControlName="name"  matInput>
+</mat-form-field>
+  </div>
+
+  <div class="input-data">
+<mat-form-field class="descriptionRoom">
+  <mat-label>Descrizione</mat-label>
+  <input formControlName="description" matInput>
+  <textarea matInput></textarea>
+</mat-form-field>
+  </div>
+
+  <div class="input-data">
+<mat-form-field class= "priceRoom" floatLabel="always">
+  <mat-label>Prezzo</mat-label>
+  <input formControlName="price" type="number" class="example-right-align" placeholder="0" matInput>
+  <span matTextPrefix>€&nbsp;</span>
+</mat-form-field>
+  </div>
+
+  <div class="input-data">
+<mat-form-field class="type">
+  <mat-label>Tipologia</mat-label>
+  <mat-select formControlName="roomType"> @for (rType of ['Singola','Doppia','Royal','Quadrupla']; track rType) {
+    <mat-option [value]="rType">{{rType}}</mat-option>
+  }
+  </mat-select>
+</mat-form-field>
+  </div>
+
+  <div class="input-data">
+<mat-form-field class="serviceRoom">
+  <mat-label>Servizi</mat-label>
+   <mat-select formControlName="services" multiple> @for (service of services; track service) {
+    <mat-option [value]="service">{{service}}</mat-option>
+  } 
+  </mat-select>
+</mat-form-field>
+  </div>
+
+<button mat-flat-button class="submit" type="submit" [disabled]="!addForm.valid">Aggiungi Stanza</button>
+
+<div class="card">
+  <p-toast
+      position="bottom-center"
+      key="bc"
+      [showTransitionOptions]="'500ms'" 
+      [hideTransitionOptions]="'500ms'" />
+</div>
+</form>
+</div>

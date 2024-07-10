@@ -1,0 +1,60 @@
+<div class="card flex justify-content-center">
+<p-card styleClass="booking-form" class="flex justify-content-center" header="Prenotazione stanza">
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div class="field">
+    <p-floatLabel>
+      <input id="guestName" type="text" formControlName="guestName" pInputText />
+      <label for="guestName">Nome Ospite</label>
+    </p-floatLabel>
+    </div>
+
+    <div class="field">
+     <p-floatLabel>
+       <input id="guestEmail" type="text" formControlName="guestEmail" pInputText />
+       <label for="guestEmail">Email</label>
+     </p-floatLabel>
+    </div>
+
+     
+     <div class="check">
+      <tr>
+        <div class="checktd">
+      <td>
+        <p style="margin: 20px;">Check-In</p>
+        <input  placeholder="dd-mm-yyyy"  style="margin-left: -10px; margin-right: 30px;" id="checkIn" type="date" 
+        formControlName="checkIn" pInputText />
+        <label for="checkIn"></label>
+      </td>
+        </div>
+      
+      <td>
+        <p style="margin-left: 80px; margin-bottom: 20px;">Check-Out</p>
+        <input style="margin-left: 30px;" id="checkOut" type="date" formControlName="checkOut"
+         pInputText />
+        <label for="checkOut"></label>
+      </td>
+    </tr>
+     </div>
+
+     <div class="field2">
+      <p-floatLabel style="margin: 20px;">
+        <input id="guestsNumber" type="number" formControlName="guestsNumber" pInputText>
+        <label for="guestsNumber">Numero di ospiti</label>
+      </p-floatLabel>
+     </div>
+
+      <button mat-flat-button style="margin-left: 370px; width: 20%;"
+       class = "submit" type="submit" [disabled]="!bookForm.valid" >Continua</button>
+     
+      <div class="card">
+        <p-toast
+          position="bottom-center"
+          key="bc"
+          [showTransitionOptions]="'500ms'" 
+          [hideTransitionOptions]="'500ms'" />
+      </div>
+  
+  </form>
+
+</p-card>
+</div>

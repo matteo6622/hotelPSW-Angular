@@ -1,0 +1,100 @@
+<div class="card">
+  <p-table *ngIf="bookings" [value]="bookings" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5, 10, 20]" 
+  [tableStyle]="{'min-width': '70rem'}" sortField="id" [sortOrder]="1"
+  >
+      <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+              Stanze
+              
+          </div>
+      </ng-template>
+
+      <ng-template pTemplate="header">
+          <tr>
+              <th pSortableColumn="id">Book ID <p-sortIcon field="id"/> </th>
+              <th pSortableColumn="checkIn" >Data Check-in <p-sortIcon field="check-in"/> </th>
+              <th pSortableColumn="checkOut" >Data Check-out <p-sortIcon field="check-out"/> </th>
+              <th >Codice di conferma</th>
+              <th>Email</th>
+              <th>Numero di ospiti </th>
+              <th pSortableColumn="room.id">Room ID <p-sortIcon field="room.id"/> </th>
+              <th>P/P a notte</th>
+              <th>Prezzo totale</th>
+              <th></th>
+          </tr>
+
+          <tr>
+            <th bgcolor="#FFFFFF">
+                <p-columnFilter 
+                    type="text"
+                    field="id" 
+                    placeholder="Cerca per Book ID" 
+                    ariaLabel="Filter ID"
+                    hideOnClear="true" />
+                    
+            </th>
+
+            <th bgcolor="#FFFFFF">
+                <!-- <p-columnFilter 
+                    type="date"
+                    field="checkIn"
+                    placeholder="Cerca per ID" 
+                    ariaLabel="Filter ID"
+                    hideOnClear="true">
+                    
+                     <ng-template pTemplate="filter" let-filter="filterCallback">
+                        <p-calendar  dateFormat="yyyy/mm/dd" (onSelect)="filter($event)"></p-calendar>
+                    </ng-template> 
+                </p-columnFilter> -->
+                                 
+            </th>
+            
+
+            <th></th>
+
+            <th></th>
+
+            <th></th>
+
+            <th></th>
+            <th bgcolor="#FFFFFF">
+              <p-columnFilter 
+                  type="text"
+                  field="room.id" 
+                  placeholder="Cerca per Room ID" 
+                  ariaLabel="Filter ID"
+                  hideOnClear="true" />
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-bookings >
+          <tr>
+              <td>{{bookings.id}}</td>
+              <td>{{bookings.checkIn}}</td>
+              <td>{{bookings.checkOut}}</td>
+              <td>{{bookings.confirmationCode}}</td>
+              <td>{{bookings.guestEmail}}</td>
+              <td>{{bookings.numberOfGuest}}</td>
+              <td>{{bookings.room.id}}</td>
+              <td>{{bookings.room.price}} €</td>
+              <td>{{bookings.room.price * bookings.numberOfDays * bookings.numberOfGuest}} €</td>
+              <td> 
+                <div class="trash">
+                    <p-button label="Elimina" (onClick)="deleteBooking(bookings.id)" icon="pi pi-trash" 
+                    iconPos="left"
+                    severity="danger"/>
+                </div>
+              </td>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+          <div class="flex align-items-center justify-content-between">
+              In totale ci sono {{bookings ? bookings.length : 0 }} prenotazioni.
+          </div>
+      </ng-template>
+  </p-table>
+</div>

@@ -1,0 +1,141 @@
+<div class="card">
+    <p-table [value]="rooms" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5, 10, 20]" 
+    [tableStyle]="{'min-width': '70rem'}" sortField="id" [sortOrder]="1" >
+        <ng-template pTemplate="caption">
+            <div class ="flex align-items-center justify-content-between">
+                Stanze
+                <div style="margin-left: 30px;">
+                <th>Seleziona check-in:
+                <input type="date" [(ngModel)]="checkIn" style="margin-right: 40px;" pInputText>
+                 Seleziona check-out:
+                <input type="date" [(ngModel)]="checkOut" style="margin-right: 40px;" pInputText>
+                <p-button [disabled]="!checkOut || !checkIn" (onClick)="getAvailableRooms()" label="Cerca"/>
+                </th>
+            </div>
+                
+            </div>
+        </ng-template>
+  
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="id">ID <p-sortIcon field="id"/> </th>
+                <th pSortableColumn="name" >Nome Stanza <p-sortIcon field="name"/> </th>
+                <th>Descrizione</th>
+                <th pSortableColumn="price">P/P a notte <p-sortIcon field="price"/></th>
+                <th pSortableColumn="roomType">Room Type <p-sortIcon field="roomType"/> </th>
+                <th>Servizi offerti </th>
+                <th>Azioni</th>
+            </tr>
+  
+            <tr>
+              <th bgcolor="#FFFFFF">
+                  <p-columnFilter 
+                      type="text"
+                      field="id" 
+                      placeholder="Cerca per ID" 
+                      ariaLabel="Filter ID"
+                      hideOnClear="true"/>
+                      
+              </th>
+  
+              <th bgcolor="#FFFFFF">
+                  <p-columnFilter 
+                      type="text"
+                      field="name" 
+                      placeholder="Cerca per nome" 
+                      ariaLabel="Filter Name" />
+              </th>
+  
+              <th bgcolor="#FFFFFF">
+                  <p-columnFilter 
+                      type="text"
+                      field="description" 
+                      placeholder="Cerca per descrizione" 
+                      ariaLabel="Filter Description" />
+              </th>
+  
+              <th bgcolor="#FFFFFF">
+                  <p-columnFilter 
+                      type="text"
+                      field="price" 
+                      placeholder="Cerca per prezzo" 
+                      ariaLabel="Filter Price" />
+              </th>
+  
+              <th bgcolor="#FFFFFF">
+                  <p-columnFilter 
+                      field="roomType"
+                      matchMode="equals"
+                      showMenu="false">
+                  <ng-template pTemplate="filter" let-rooms let-filter="filterCallback">
+                      <p-dropdown
+                      [options]="type"
+                      (onChange)="filter($event.value)" 
+                      placeholder="Seleziona" 
+                      [showClear]="true">
+                      <ng-template let-options pTemplate="filter">
+                          <p-tag 
+                              [value]="options.roomType" 
+                               />
+                      </ng-template>
+                      </p-dropdown>
+                  </ng-template>
+                  </p-columnFilter>
+              </th>
+  
+              <th bgcolor="#FFFFFF">
+                  <p-columnFilter 
+                      field="services"
+                      matchMode="contains"
+                      showMenu="false">
+                  <ng-template pTemplate="services" let-rooms let-filter="filterCallback">
+                      <p-dropdown
+                      [options]="services"
+                      (onChange)="filter($event.value)" 
+                      placeholder="Seleziona" 
+                      [showClear]="true">
+                      <ng-template let-options pTemplate="filter">
+                          <div class="p-multiselect-representative-option">
+                          <p-tag 
+                              [value]="options.value" />
+                          </div>
+                      </ng-template>
+                      </p-dropdown>
+                  </ng-template>
+                  </p-columnFilter>
+              </th>
+              <th></th>
+            </tr>
+        </ng-template>
+  
+        <ng-template pTemplate="body" let-rooms>
+            <tr>
+                <td>{{rooms.id}}</td>
+                <td>{{rooms.name}}</td>
+                <td>{{rooms.description}}</td>
+                <td>{{rooms.price | currency:'EUR'}}</td>
+                <td><p-tag 
+                  [value]="rooms.roomType" /></td>
+                <td>{{rooms.services}}</td>
+                <td>
+                <div class="book">
+                  <p-button (onClick)="book(rooms.id)" label="Prenota" icon="pi pi-book"/>
+                </div>
+              </td>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+            In totale ci sono {{rooms ? rooms.length : 0 }} stanze.
+        </div>
+    </ng-template>
+</p-table>
+</div>
+
+<div class="card">
+    <p-toast
+      position="bottom-center"
+      key="bc"
+      [showTransitionOptions]="'500ms'" 
+      [hideTransitionOptions]="'500ms'" />
+  </div>

@@ -1,0 +1,43 @@
+body {
+    display: list-item;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+
+
+  :host {
+    overflow: auto;
+    
+  }
+
+  :host ::ng-deep .trash {
+  font-family: 'Poppins', sans-serif;
+  line-height: 10px;
+  padding: 5px;
+  .button {
+    margin-bottom: .5rem;
+    display: block;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+  }
+}
+
+:host ::ng-deep .edit {
+  font-family: 'Poppins', sans-serif;
+  line-height: 10px;
+  padding: 5px;
+  .button {
+    margin-bottom: .5rem;
+    display: block;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+  }
+}

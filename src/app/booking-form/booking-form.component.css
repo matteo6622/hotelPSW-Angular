@@ -1,0 +1,38 @@
+:host >>> .booking-form {
+    width: 90%;
+    padding: 50px;
+    margin: 20px;
+    margin-left: 50px;
+    
+}
+
+:host >>> .p-inputtext {
+    width: 100%; 
+}
+
+
+.field {
+    margin: 30px;
+}
+
+.field2 {
+    margin-top: 50px;
+    margin: 30px;
+}
+
+td {
+    display: table-cell;
+    vertical-align: inherit;
+  }
+
+.check {
+    width: 100%;
+    
+    
+    margin-left: 200px;   
+   
+}
+
+.checktd {
+    margin-right: 150px;
+}
